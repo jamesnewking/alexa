@@ -13,12 +13,13 @@ const GetNewFactHandler = {
   handle(handlerInput) {
     const factArr = data;
     const factIndex = Math.floor(Math.random() * factArr.length);
-    const randomFact = factArr[factIndex];
-    const speechOutput = GET_FACT_MESSAGE + randomFact;
+    const randomFactSpeak = factArr[factIndex][0];
+    const randomFactCard = factArr[factIndex][1];
+    const speechOutput = GET_FACT_MESSAGE + randomFactSpeak;
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard(SKILL_NAME, randomFact)
+      .withSimpleCard(SKILL_NAME, randomFactCard)
       .getResponse();
   },
 };
@@ -84,17 +85,17 @@ const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
 const data = [
-  '<voice name="Amy"><lang xml:lang="en-US">Cooper is a <prosody rate="x-slow">gooood boy</prosody></lang></voice>',
-  '<voice name="Brian"><s>Finnly eats poop</s> eeee you</voice>',
-  '<voice name="Raveena">Finnly like to milk cooper</voice>',
-  '<voice name="Geraint">Cooper was raised by James</voice>',
-  '<voice name="Joanna">Finnly likes to poop in Kaylie\'s room</voice>',
-  '<voice name="Ivy">Neeee Neeee was a smart dog, smarter than Kobe</voice>',
-  '<voice name="Matthew">Kobe was a bully</voice>',
-  '<voice name="Justin">Kimo was very high class and an angel</voice>',
-  '<voice name="Joey">James is a great dog trainer<audio src="soundbank://soundlibrary/animals/amzn_sfx_dog_med_woof_1x_01"/><audio src="soundbank://soundlibrary/animals/amzn_sfx_dog_med_woof_1x_01"/></voice>',
-  '<voice name="Salli">I have a secret to tell you! <amazon:effect name="whispered"><prosody rate="x-slow"> <prosody volume="loud">Finnly stinks</prosody></prosody></amazon:effect></voice>',
-  '<voice name="Salli"><prosody pitch="high">Neeee Neeee</prosody> had flees</voice>',
+  ['<voice name="Amy"><lang xml:lang="en-US">Cooper is a <prosody rate="x-slow">gooood boy</prosody></lang></voice>','Cooper is a good boy!'],
+  ['<voice name="Brian"><s>Finnley eats his own poop</s> eeee you</voice>','Finnley eats his own poop'],
+  ['<voice name="Raveena">Finnley like to milk cooper</voice>','Finnley likes to milk Cooper'],
+  ['<voice name="Geraint">Cooper was raised by James</voice>','Cooper was raised by James'],
+  ['<voice name="Joanna">Finnley likes to poop in Kaylie\'s room</voice>',"Finnley like to poop in Kaylie's room"],
+  ['<voice name="Ivy">Neeee Neeee was a smart dog, smarter than Kobe</voice>','Nee Nee was a smart dog, smarter than Kobe!'],
+  ['<voice name="Matthew">Kobe was a bully</voice>','Kobe was a bully'],
+  ['<voice name="Justin">Kimo was very high class and an angel</voice>','Kimo was very high class and an angel'],
+  ['<voice name="Joey">James is a great dog trainer<audio src="soundbank://soundlibrary/animals/amzn_sfx_dog_med_woof_1x_01"/><audio src="soundbank://soundlibrary/animals/amzn_sfx_dog_med_woof_1x_01"/></voice>','James is a great dog trainer'],
+  ['<voice name="Salli">I have a secret to tell you! <amazon:effect name="whispered"><prosody rate="x-slow"> <prosody volume="loud">Finnley stinks</prosody></prosody></amazon:effect></voice>','I have a secret to tell you...Finnley stinks'],
+  ['<voice name="Salli"><prosody pitch="high">Neeee Neeee</prosody> had flees</voice>','Nee Nee had flees'],
 ];
 
 const skillBuilder = Alexa.SkillBuilders.standard();
